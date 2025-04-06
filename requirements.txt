@@ -94,4 +94,4 @@ Werkzeug==3.0.0
 Wikipedia-API==0.7.1
 WTForms==3.0.1
 yarg==0.1.9
-yarl==1.11.1
+yarl==1.10.0
