@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block hero %}
+<!-- Start Hero -->
+    <section id="hero">
+      <div class="hero-container">
+        <a class="hero-logo" data-aos="zoom-in"><img src="static/assets/img/logo/kuroshirocode-logo-nobg.png" alt="" style="width: 160px"></a>
+        <h1 data-aos="zoom-in">Heya! I'm Timoty</h1>
+        <h2 data-aos="fade-up">Also known as Kuro, nice to meet you!</h2>
+        <a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">Get Started</a>
+      </div>
+    </section>
+<!-- End Hero -->
+{% endblock %}
+{% block header %}
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <a href="{{url_for('home')}}"><img src="static/assets/img/logo/kuroshirocode-logo.png" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link active" href="{{url_for('home')}}">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link" href="{{url_for('contact')}}">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+{% endblock %}
+{% block body %}
+  <main id="main">
+
+    <!-- ======= About Me Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>{ About Me }</h2>
+          <p>Self-taught Software Engineer, Game Dev, hopeless nerd and AI enthusiast.</p>
+          <p>Sprinkle a tad bit of curiosity, eagerness to learn, and you got a great me!</p>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="col-lg-12" data-aos="fade-left">
+            <div class="content pt-4 pt-lg-0 pl-0 pl-lg-3 ">
+              <h3 class="text-center">What tools do I use?</h3>
+              <p class="fst-italic text-center" style="margin-bottom: 50px; margin-top: 35px">
+                Or that I'm accustomed to
+              </p>
+              {% include 'tools-logos.html' %}
+              <div class="fst-italic fst-bold text-center" style="margin-top: 50px;">
+                <p>
+                  " You want my bio? You can have it!
+                </p>
+                <p>
+                  I left everything that describe me gathered in one place.
+                </p>
+                <p>
+                  Now you'll just have to find it! "
+                </p>
+              </div>
+              <!-- -------------Div here just as a reminder to add the cv link once it's ready. It will be removed or modified-------------------- -->
+              <div class="fst-bold text-center" style="margin-top: 50px; font-size: 14px;">
+                <p>
+                  (My cv isn't ready yet xP but when it will, I'll put the link here.
+                  If you want to know more, <a href="{{url_for('contact')}}">contact me</a>)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- End About Us Section -->
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Portfolio</h2>
+          <p>Here's few of my completed/WIP projects</p>
+            <p>Wanna see more? Check my <a type="link" href="https://github.com/Kurokatana94" style="text-decoration: underline">GitHub</a>!</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-completed">Completed</li>
+              <li data-filter=".filter-wip">WIP</li>
+              <li data-filter=".filter-demo">Demo</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+          {% include 'portfolio-cards.html' %}
+        </div>
+      </div>
+    </section><!-- End Portfolio Section -->
+  </main><!-- End #main -->
+{% endblock %}
