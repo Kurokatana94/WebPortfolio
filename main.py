@@ -41,6 +41,7 @@ def contact():
             return redirect(url_for('home'))
         except Exception as e:
             print("Email sending failed:", e)
+            return f"Error: {e}", 500
         finally:
             if connection:
                 connection.quit()
