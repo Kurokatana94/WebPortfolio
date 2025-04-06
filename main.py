@@ -20,23 +20,30 @@ def home():
 def contact():
     if request.method == 'POST':
         form = request.form
-        connection = smtplib.SMTP("smtp.gmail.com")
-        connection.starttls()
-        connection.login(user=portfolio_email, password=email_password)
-        if form.get('checkbox'):
-            connection.sendmail(from_addr=portfolio_email,
-                                to_addrs=my_email,
-                                msg=f"Subject:Spam Detected\n\n"
-                                    f"Email:\n{form['email']}")
-        else:
-            connection.sendmail(from_addr=portfolio_email,
-                                to_addrs=my_email,
-                                msg=f"Subject:{form['name']} is contacting you!\n\n"
-                                    f"Email:\n{form['email']}\n\n"
-                                    f"Subject:\n{form['subject']}\n\n"
-                                    f"Name:\n{form['name']}\n\n"
-                                    f"Message:\n{form['message']}")
-        return redirect(url_for('home'))
+        connection = None
+        try:
+            connection = smtplib.SMTP("smtp.gmail.com")
+            connection.starttls()
+            connection.login(user=portfolio_email, password=email_password)
+            if form.get('checkbox'):
+                connection.sendmail(from_addr=portfolio_email,
+                                    to_addrs=my_email,
+                                    msg=f"Subject:Spam Detected\n\n"
+                                        f"Email:\n{form['email']}")
+            else:
+                connection.sendmail(from_addr=portfolio_email,
+                                    to_addrs=my_email,
+                                    msg=f"Subject:{form['name']} is contacting you!\n\n"
+                                        f"Email:\n{form['email']}\n\n"
+                                        f"Subject:\n{form['subject']}\n\n"
+                                        f"Name:\n{form['name']}\n\n"
+                                        f"Message:\n{form['message']}")
+            return redirect(url_for('home'))
+        except Exception as e:
+            print("Email sending failed:", e)
+        finally:
+            if connection:
+                connection.quit()
     return render_template('contact-me.html', year=dt.datetime.now().year)
 
 if __name__ == '__main__':
