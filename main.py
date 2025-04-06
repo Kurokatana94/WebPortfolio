@@ -12,10 +12,6 @@ portfolio_email = os.environ.get('PORT_EMAIL')
 my_email = os.environ.get('MY_EMAIL')
 email_password = os.environ.get('EMAIL_PASSWORD')
 
-connection = smtplib.SMTP("smtp.gmail.com")
-connection.starttls()
-connection.login(user=portfolio_email, password=email_password)
-
 @app.route('/')
 def home():
     return render_template('index.html', year=dt.datetime.now().year)
@@ -24,6 +20,9 @@ def home():
 def contact():
     if request.method == 'POST':
         form = request.form
+        connection = smtplib.SMTP("smtp.gmail.com")
+        connection.starttls()
+        connection.login(user=portfolio_email, password=email_password)
         if form.get('checkbox'):
             connection.sendmail(from_addr=portfolio_email,
                                 to_addrs=my_email,
