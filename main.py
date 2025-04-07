@@ -1,17 +1,17 @@
 from flask import Flask, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap5
 import datetime as dt
-import smtplib
-import os
+import logging
 import requests
+import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Bootstrap5(app)
 
-portfolio_email = os.environ.get('PORT_EMAIL')
-my_email = os.environ.get('MY_EMAIL')
-email_password = os.environ.get('EMAIL_PASSWORD')
+PORTFOLIO_EMAIL = os.environ.get('PORT_EMAIL')
+MY_EMAIL = os.environ.get('MY_EMAIL')
+# EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 @app.route('/')
 def home():
@@ -21,31 +21,20 @@ def home():
 def contact():
     if request.method == 'POST':
         form = request.form
-        connection = None
+
         try:
-            connection = smtplib.SMTP(os.environ.get('SMTP_PROV'))
-            connection.starttls()
-            connection.login(user=portfolio_email, password=email_password)
-            if form.get('checkbox'):
-                connection.sendmail(from_addr=portfolio_email,
-                                    to_addrs=my_email,
-                                    msg=f"Subject:Spam Detected\n\n"
-                                        f"Email:\n{form['email']}")
-            else:
-                connection.sendmail(from_addr=portfolio_email,
-                                    to_addrs=my_email,
-                                    msg=f"Subject:{form['name']} is contacting you!\n\n"
-                                        f"Email:\n{form['email']}\n\n"
-                                        f"Subject:\n{form['subject']}\n\n"
-                                        f"Name:\n{form['name']}\n\n"
-                                        f"Message:\n{form['message']}")
-            return redirect(url_for('home'))
-        except Exception as e:
-            print("Email sending failed:", e)
-            return f"Error: {e}", 500
-        finally:
-            if connection:
-                connection.quit()
+            resp = requests.post(os.environ.get('EMAIL_API_URL'), auth=("api", os.environ.get("EMAIL_API_KEY")),
+                                 data={"from": f"{form['name']} <{PORTFOLIO_EMAIL}>",
+                                       "to": f"Timoty Ravoni <{MY_EMAIL}>", "subject": f"{form['subject']}",
+                                       "text": form['message']})
+            if resp.status_code == 200:  # success
+                logging.info(f"Successfully sent an email to '{MY_EMAIL}' via Mailgun API.")
+                return redirect(url_for('home'))
+            else:  # error
+                logging.error(f"Could not send the email, reason: {resp.text}")
+
+        except Exception as ex:
+            logging.exception(f"Mailgun error: {ex}")
     return render_template('contact-me.html', year=dt.datetime.now().year)
 
 if __name__ == '__main__':
