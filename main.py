@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap5
 import datetime as dt
 import smtplib
 import os
+import requests
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -22,7 +23,7 @@ def contact():
         form = request.form
         connection = None
         try:
-            connection = smtplib.SMTP("smtp.gmail.com")
+            connection = smtplib.SMTP(os.environ.get('SMTP_PROV'))
             connection.starttls()
             connection.login(user=portfolio_email, password=email_password)
             if form.get('checkbox'):
