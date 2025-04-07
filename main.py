@@ -11,7 +11,6 @@ Bootstrap5(app)
 
 PORTFOLIO_EMAIL = os.environ.get('PORT_EMAIL')
 MY_EMAIL = os.environ.get('MY_EMAIL')
-# EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 @app.route('/')
 def home():
