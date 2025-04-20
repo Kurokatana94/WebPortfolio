@@ -190,7 +190,11 @@
         });
       }, true);
     }
-
+  // Had to force my way to remove "position: absolute;" that was passed in the style un-centering the portfolio cards
+  document.querySelectorAll('.portfolio-item').forEach(item => {
+      const styles = window.getComputedStyle(item);
+      item.style.position = 'static';
+    });
   });
 
   /**
@@ -210,24 +214,6 @@
       delay: 5000,
       disableOnInteraction: false
     },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  });
-
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets',
