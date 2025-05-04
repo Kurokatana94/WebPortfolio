@@ -36,5 +36,9 @@ def contact():
             logging.exception(f"Mailgun error: {ex}")
     return render_template('contact-me.html', year=dt.datetime.now().year)
 
+@app.route('/todo-notepad-demo')
+def todo_notepad_demo():
+    return render_template('todo-notepad-demo.html', year=dt.datetime.now().year)
+
 if __name__ == '__main__':
     app.run(debug=False)

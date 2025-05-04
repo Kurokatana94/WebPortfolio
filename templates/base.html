@@ -30,6 +30,8 @@
   <!-- Template Main CSS File -->
   <link href="static/assets/css/style.css" rel="stylesheet">
 
+{% block extra_css %}{% endblock %}
+
   <!-- =======================================================
   * Template Name: Knight - v4.3.0
   * Template URL: https://bootstrapmade.com/knight-free-bootstrap-theme/
@@ -61,6 +63,7 @@
   </header><!-- End Header -->
 {% endblock %}
 {% block body %}{% endblock %}
+{% block footer %}
   <!-- ======= Footer ======= -->
   <footer id="footer">
 
@@ -87,7 +90,7 @@
       </div>
     </div>
   </footer><!-- End Footer -->
-
+{% endblock %}
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -104,6 +107,8 @@
   <!-- Template Main JS File -->
   <script src="static/assets/js/main.js"></script>
 
+  <!-- ToDo Demo JS File -->
+  <script src="static/assets/js/todo-script.js"></script>
 </body>
 
 </html>

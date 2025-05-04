@@ -1,0 +1,72 @@
+/* General Styles */
+.center-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-align {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+}
+
+.center-vertically {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Buttons */
+.delete-btn{
+    color: rgb(255, 0, 0);
+    font-size: 1.5rem;
+}
+.delete-btn:hover{
+    color: rgb(245, 63, 63);
+}
+
+.check-btn{
+    color: rgb(0, 202, 0);
+    font-size: 1.5rem;
+}
+
+.check-btn:hover{
+    color: rgb(27, 231, 27);
+}
+
+
+/* Dark Mode */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+}
+
+/* Footer */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  footer {
+    text-align: center;
+  }
