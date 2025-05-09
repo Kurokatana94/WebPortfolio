@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, jsonify
 from flask_bootstrap import Bootstrap5
 import datetime as dt
 import logging
@@ -36,9 +36,22 @@ def contact():
             logging.exception(f"Mailgun error: {ex}")
     return render_template('contact-me.html', year=dt.datetime.now().year)
 
+# ============================
+
 @app.route('/todo-notepad-demo')
 def todo_notepad_demo():
     return render_template('todo-notepad-demo.html', year=dt.datetime.now().year)
+
+@app.route('/type-before-its-gone-demo')
+def type_before_its_gone_demo():
+    return render_template('type-before-its-gone-demo.html', year=dt.datetime.now().year)
+
+@app.route('/get-sentence')
+def get_sentence():
+    result = requests.get('https://thequoteshub.com/api/random-quote').json()
+    text = result['text']
+    author = result['author']
+    return jsonify({'text': text, 'author': author})
 
 if __name__ == '__main__':
     app.run(debug=False)
