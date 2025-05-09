@@ -6,7 +6,7 @@ let elapsedTimer;
 let elapsedTime = 0;
 let timeStart = null;
 const idleLimit = 5; // seconds before deletion
-const challengeDuration = 10; // seconds of active typing required
+const challengeDuration = 300; // seconds of active typing required
 
 // Function to reset the countdown timer
 function resetCountdown() {
