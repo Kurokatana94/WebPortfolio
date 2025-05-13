@@ -1,0 +1,63 @@
+
+/* GENERAL STYLES */
+.center-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-vertically {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* PDF DROP ZONE */
+#drop-zone {
+    width:400px;
+    height:300px;
+    border:2px dashed #ccc;
+    text-align:center;
+    vertical-align: middle;
+    border-radius: 15px;
+    line-height:300px;
+    color: #ccc;
+}
+
+/* AUDIO PLAYER AND DOWNLOADER */
+#player {
+    margin-top:20px;
+    display:none;
+}
+
+.download-btn{
+    color: rgb(0, 202, 0);
+    font-size: 2.5rem;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.download-btn:hover{
+    color: rgb(27, 231, 27);
+}
+
+/* DARK MODE */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+  }
+
+  textarea {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+  }

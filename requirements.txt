@@ -76,7 +76,7 @@ pytz==2025.1
 #pywin32==310
 pyzmq==26.4.0
 referencing==0.36.2
-requests==2.32.0
+requests~=2.25.1
 rpds-py==0.24.0
 six==1.17.0
 soupsieve==2.6
@@ -95,3 +95,6 @@ Wikipedia-API==0.7.1
 WTForms==3.0.1
 yarg==0.1.9
 yarl==1.10.0
+
+fitz~=0.0.1.dev2
+zyphra~=0.1.6
