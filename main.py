@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, jsonify
 from flask_bootstrap import Bootstrap5
 from zyphra import ZyphraClient
-import fitz # PyMuPDF
+import pymupdf # PyMuPDF
 import flask
 import datetime as dt
 import logging
@@ -65,7 +65,7 @@ def pdf_to_speech_demo():
 
 # ======== PDF TEXT EXTRACTION ========
 def extract_pdf_text(file):
-    doc = fitz.open(stream=file.read(), filetype='pdf')
+    doc = pymupdf.open(stream=file.read(), filetype='pdf')
     pdf_text = ''
     for page in doc:
         pdf_text += page.get_text()
