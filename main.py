@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, jsonify
 from flask_bootstrap import Bootstrap5
 from zyphra import ZyphraClient
-from sklearn.cluster import KMeans
+from sklearn.cluster import MiniBatchKMeans
 from PIL import Image
 import numpy as np
 import pymupdf # PyMuPDF
@@ -116,10 +116,10 @@ def get_palette():
     img_array = np.array(img)
     img_array = img_array.reshape((-1,3))
 
-    kmeans = KMeans(n_clusters=100)
-    labels = kmeans.fit_predict(img_array)
+    mbkmeans = MiniBatchKMeans(n_clusters=100, batch_size=1000)
+    labels = mbkmeans.fit_predict(img_array)
     counts = np.bincount(labels)
-    colors = kmeans.cluster_centers_.astype(int)
+    colors = mbkmeans.cluster_centers_.astype(int)
 
     total_count = counts.sum()
     palette = []
