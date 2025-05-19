@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+  <link href="static/assets/css/palette-hextractor-style.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+  <main id="main">
+    <div class="container">
+        <!-- ================== DARK/LIGHT MODE ================== -->
+        <div class="row justify-content-center">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center my-5">Palette Hextractor</h1>
+        </div>
+        <div class="col-md-3">
+            <div class="col-md-1 offset-md-11 my-5">
+            <a type="button" id="theme-toggle" style="font-size: 1.5rem;">🌗</a>
+            </div>
+        </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="row justify-content-center mt-5">
+              <!-- ================== DROP ZONE ================== -->
+              <div id="drop-zone" class="col-md-6 mx-3 my-3">
+              <strong>Drop image or URL here</strong>
+              </div>
+              <!-- ================== PALETTE CONTAINER ================== -->
+              <div id="palette-container" class="col-md-6 mx-3 my-3" hidden>
+              <div class="d-flex align-items-center justify-content-center">
+                  <div id="loading-gif" class="center-v"><img src="static\assets\img\app-img\Dual Ring@1x-1.0s-200px-200px.gif"></div>
+                  <div id="palette-box" class="col-12 mt-2" hidden></div>
+              </div>
+              </div> 
+          </div>
+          <div class="row justify-content-center my-3">
+              <div class="col-md-6 text-center">
+              <input type="file" id="file-input" accept="image/*" />
+              <button id="choose-file" class="btn btn-primary">Choose an Image…</button>
+              </div>
+          </div>
+        </div>
+    </div>
+  </main>
+{% endblock %}
+
+{% block extra_js %}
+  <!-- Type Before It's Gone JS File -->
+  <script src="static/assets/js/palette-hextractor-script.js"></script>
+{% endblock %}
+
+{% block footer %}
+  <!-- ======= Footer ======= -->
+  <footer id="footer" style="background: none !important;">
+
+    <div class="footer-top">
+
+      <div class="container">
+
+        <div class="social-links">
+          <a href="https://x.com/Kurokatana94" class="twitter"><i class="bx bxl-twitter"></i></a>
+<!--          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a> meh instagram bad -->
+          <a href="https://github.com/Kurokatana94" class="github"><i class="bx bxl-github"></i></a>
+          <a href="https://www.linkedin.com/in/timoty-ravoni-b91ba21b5/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright {{year}} <strong><span>Timoty Ravoni</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Based on design by <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+{% endblock %}

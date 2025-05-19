@@ -1,0 +1,107 @@
+
+/* GENERAL STYLES */
+.center-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-v {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* DROP ZONE */
+#drop-zone {
+  position: relative;
+  width: 510px;
+  height: 410px;
+  border: 2px dashed #aaa;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+#drop-zone.dragover {
+  border-color: #333;
+  background-color: rgba(0,0,0,0.05);
+}
+#drop-zone img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#drop-zone strong {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  color: #666;
+}
+/* hide default file input */
+#file-input { display: none; }
+
+/* PALETTE CONTAINER */
+#palette-container {
+  position: relative;
+  width: 510px;
+  height: 410px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.color-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.color-swatch {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.color-code {
+  font-family: monospace;
+  margin-right: 10px;
+}
+
+.copy-button {
+  padding: 4px 8px;
+  font-size: 0.9em;
+  color: var(--text-color) !important;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+}
+
+/* DARK MODE */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #1c1c1c;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+  }
+
+  textarea {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+  }

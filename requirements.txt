@@ -52,14 +52,14 @@ multidict==6.1.0
 nbclient==0.10.2
 nbconvert==7.16.6
 nbformat==5.10.4
-numpy==2.2.4
+numpy==2.2.5
 p3==0.2.1
 packaging==24.2
 pandas==2.2.3
 pandocfilters==1.5.1
 parso==0.8.4
 pickleshare==0.7.5
-pillow==11.1.0
+pillow==11.2.1
 pipreqs==0.5.0
 platformdirs==4.3.7
 prompt_toolkit==3.0.50
@@ -98,3 +98,4 @@ yarl==1.10.0
 
 zyphra~=0.1.6
 PyMuPDF~=1.25.5
+scikit-learn~=1.6.1
