@@ -103,6 +103,7 @@ def upload_pdf():
                          mimetype='audio/mpeg',
                          as_attachment=False,
                          download_name=filename)
+    return None
 
 # ======== PALETTE HEXCODES EXTRACTION ========
 @app.route('/get-palette', methods=['POST'])
