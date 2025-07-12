@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+	<!-- Custom CSS File -->
+	<link href="static/assets/css/gift-coffee-style.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<main id="main">
+  <div class="container coffee-bg center-items">
+    <div class="text-center row" style="margin-top: 35%; margin-bottom: 35%;">
+      <h1>Thank you for your donation!</h1>
+      <a href="{{url_for('home')}}"><p>Home Page</p></a>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block footer %}
+  <!-- ======= Footer ======= -->
+  <footer id="footer" style="background: none !important;">
+
+    <div class="footer-top">
+
+      <div class="container">
+
+        <div class="social-links">
+          <a href="https://x.com/Kurokatana94" class="twitter"><i class="bx bxl-twitter"></i></a>
+  <!--          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a> meh instagram bad -->
+          <a href="https://github.com/Kurokatana94" class="github"><i class="bx bxl-github"></i></a>
+          <a href="https://www.linkedin.com/in/timoty-ravoni-b91ba21b5/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright {{year}} <strong><span>Timoty Ravoni</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Based on design by <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+{% endblock %}

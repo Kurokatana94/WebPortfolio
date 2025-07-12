@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap5
 from zyphra import ZyphraClient
 from sklearn.cluster import MiniBatchKMeans
 from PIL import Image
+import stripe
 import numpy as np
 import pymupdf # PyMuPDF
 import flask
@@ -18,8 +19,13 @@ Bootstrap5(app)
 
 ZYPHRA_KEY = os.environ.get('ZYPHRA_KEY')
 
+stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
+app.config['STRIPE_PUBLISHABLE_KEY'] = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+
 PORTFOLIO_EMAIL = os.environ.get('PORT_EMAIL')
 MY_EMAIL = os.environ.get('MY_EMAIL')
+
+MAIN_DOMAIN = 'https://www.timotyravoni.com'
 
 @app.route('/')
 def home():
@@ -143,6 +149,43 @@ def get_palette():
         })
     
     return jsonify(palette)
+
+# ======== GIFT ME A COFFEE PAGE/REDIRECT ========
+@app.route('/gift-me-a-coffee')
+def gift_me_a_coffee():
+    return render_template("gift-me-a-coffee.html", year=dt.datetime.now().year, stripe_pk=app.config['STRIPE_PUBLISHABLE_KEY'])
+
+@app.route('/create-checkout-session', methods=['POST'])
+def create_checkout_session():
+    data = request.get_json()
+    amount = data.get("amount", 0)
+
+    if amount < 50:  # Stripe minimum in GBP
+        return jsonify({"error": "Minimum donation is £0.50"}), 400
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[{
+                'price_data': {
+                    'currency': 'gbp',
+                    'unit_amount': amount,
+                    'product_data': {
+                        'name': 'Gift me a coffee ☕',
+                    },
+                },
+                'quantity': 1,
+            }],
+            mode='payment',
+            success_url=MAIN_DOMAIN + '/checkout-successful',
+            cancel_url=MAIN_DOMAIN + '/gift-me-a-coffee',
+        )
+        return jsonify({'url': checkout_session.url})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route("/checkout-successful")
+def checkout_successful():
+    return render_template("checkout-successful.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

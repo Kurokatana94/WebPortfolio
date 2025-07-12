@@ -94,7 +94,7 @@ Wikipedia-API==0.7.1
 WTForms==3.0.1
 yarg==0.1.9
 yarl==1.10.0
-
+stripe~=12.3.0
 zyphra~=0.1.6
 PyMuPDF~=1.25.5
 scikit-learn~=1.6.1

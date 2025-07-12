@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+	<!-- Custom CSS File -->
+	<link href="static/assets/css/gift-coffee-style.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<main id="main">
+    <div class="container center-items">
+        <div>
+            <div class="text-center mb-3 mt-5">
+                <h1>Gift me a coffee</h1>
+            </div>
+            <div class="text-center mt-5 mb-5">
+                <p>Did you find my projects interesting?</p>
+                <p>Would you like to help keeping it online?</p>
+                <p>Support me by offering a coffee to fight against drowsiness and deliver more!</p>
+                <img src="static/assets/img/app-img/Cup Of Coffee Sticker.gif">
+            </div>
+            <div class="text-center mt-5">
+                <form id="donation-form">
+                    <label for="amount">Enter amount:</label>
+                    <div class="input-group input-group-sm mt-2" style="max-width: 150px; margin: 0 auto;">
+                        <span class="input-group-text">£</span>
+                        <input
+                            type="number"
+                            id="amount"
+                            name="amount"
+                            class="form-control"
+                            min="0.50"
+                            step="0.10"
+                            value="1.00"
+                            required
+                        />
+                    </div>
+                    <br><br>
+                    <button type="submit" class="btn btn-primary mb-5">Donate</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Custom JS File -->
+    <script>
+    const STRIPE_PK = "{{ stripe_pk }}";
+    </script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="static/assets/js/gift-coffee-script.js"></script>
+{% endblock %}
+
+{% block footer %}
+  <!-- ======= Footer ======= -->
+  <footer id="footer" style="background: none !important;">
+
+    <div class="footer-top">
+
+      <div class="container">
+
+        <div class="social-links">
+          <a href="https://x.com/Kurokatana94" class="twitter"><i class="bx bxl-twitter"></i></a>
+  <!--          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a> meh instagram bad -->
+          <a href="https://github.com/Kurokatana94" class="github"><i class="bx bxl-github"></i></a>
+          <a href="https://www.linkedin.com/in/timoty-ravoni-b91ba21b5/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright {{year}} <strong><span>Timoty Ravoni</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Based on design by <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+{% endblock %}

@@ -1,0 +1,26 @@
+/* GENERAL STYLES */
+.center-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-vertically {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+body {
+    background-color: #FDFBD4;
+    font-family: "Open Sans", sans-serif;
+    color: #000;
+}
+
+.coffee-layout {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
