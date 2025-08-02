@@ -98,3 +98,5 @@ stripe~=12.3.0
 zyphra~=0.1.6
 PyMuPDF~=1.25.5
 scikit-learn~=1.6.1
+gspread~=6.2.1
+oauth2client~=4.1.3

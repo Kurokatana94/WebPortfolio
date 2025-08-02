@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, jsonify
 from flask_bootstrap import Bootstrap5
+from space_flights_updates import SpaceFlightsUpdates
 from zyphra import ZyphraClient
 from sklearn.cluster import MiniBatchKMeans
 from PIL import Image
@@ -186,6 +187,57 @@ def create_checkout_session():
 @app.route("/checkout-successful")
 def checkout_successful():
     return render_template("checkout-successful.html")
+
+# ======== SPACE FLIGHTS UPDATES ========
+
+GOOGLE_CREDENTIALS_JSON = os.environ.get("GOOGLE_CREDENTIALS_JSON")
+space_updates = SpaceFlightsUpdates(GOOGLE_CREDENTIALS_JSON.replace(r'\\n', r'\n'))
+
+@app.route("/space-flights-updates")
+def space_flights_updates():
+    space_updates.past_launches_db_update()
+    space_updates.upcoming_launches_db_update()
+
+    upcoming_launches = space_updates.upcoming_launches_sheet.get_all_records()
+    records = space_updates.past_launches_sheet.get_all_records()
+
+    # Organize data for chart (launches per year)
+    past_year_data = {}
+
+    for row in records:
+        try:
+            date_str = row["Date"]
+            year = dt.datetime.fromisoformat(date_str).year
+            status = row["Status"]
+
+            if year not in past_year_data:
+                past_year_data[year] = {"total": 0, "success": 0, "failure": 0, "partial": 0}
+
+            past_year_data[year]["total"] += 1
+            if "success" in status.lower():
+                past_year_data[year]["success"] += 1
+            elif "fail" in status.lower():
+                past_year_data[year]["failure"] += 1
+            elif "partial" in status.lower():
+                past_year_data[year]["partial"] += 1
+        except Exception as e:
+            print("Skipping row due to:", e)
+            continue  # Skip malformed rows
+
+    years = sorted(past_year_data.keys())
+    chart_data = {
+        "years": years,
+        "total": [past_year_data[y]["total"] for y in years],
+        "success": [past_year_data[y]["success"] for y in years],
+        "failure": [past_year_data[y]["failure"] for y in years],
+        "partial": [past_year_data[y]["partial"] for y in years]
+    }
+
+    return render_template("space-flights-updates.html",
+                           year=dt.datetime.now().year,
+                           chart_data=chart_data,
+                           raw_data=records,
+                           upcoming_launches=upcoming_launches)
 
 if __name__ == '__main__':
     app.run(debug=True)
