@@ -14,14 +14,16 @@ document.addEventListener("DOMContentLoaded", () => {
         dateFormat: "Y-m",
         altFormat: "F Y",
         altInput: true,
-        plugins: [new monthSelectPlugin({ shorthand: true })]
+        plugins: [new monthSelectPlugin({ shorthand: true })],
+        disableMobile: true
     });
 
     const endPicker = flatpickr("#endMonth", {
         dateFormat: "Y-m",
         altFormat: "F Y",
         altInput: true,
-        plugins: [new monthSelectPlugin({ shorthand: true })]
+        plugins: [new monthSelectPlugin({ shorthand: true })],
+        disableMobile: true
     });
 
     // Set the values via Flatpickr API (not just .value!)

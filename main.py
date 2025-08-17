@@ -191,7 +191,7 @@ def checkout_successful():
 # ======== SPACE FLIGHTS UPDATES ========
 
 GOOGLE_CREDENTIALS_JSON = os.environ.get("GOOGLE_CREDENTIALS_JSON")
-space_updates = SpaceFlightsUpdates(GOOGLE_CREDENTIALS_JSON.replace(r'\\n', r'\n'))
+space_updates = SpaceFlightsUpdates(GOOGLE_CREDENTIALS_JSON.replace('\\\\n', '\n'))
 
 @app.route("/space-flights-updates")
 def space_flights_updates():
